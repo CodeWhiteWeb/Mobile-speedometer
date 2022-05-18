@@ -9,29 +9,65 @@ function onDeviceReady() {
 // current GPS coordinates
 //
 var onSuccess = function (position) {
-  document.getElementById("speed").innerHTML  = Math.round(position.coords.speed * 100) / 100            + '<br>';
-  document.getElementById("lat").innerHTML    = Math.round(position.coords.latitude * 100) / 100         + '<br>';
-  document.getElementById("lng").innerHTML    = Math.round(position.coords.longitude * 100) / 100        + '<br>';
-  document.getElementById("alt").innerHTML    = Math.round(position.coords.altitude * 100) / 100         + '<br>';
-  document.getElementById("acc").innerHTML    = Math.round(position.coords.accuracy * 100) / 100         + '<br>';
-  document.getElementById("altacc").innerHTML = Math.round(position.coords.altitudeAccuracy * 100) / 100 + '<br>';
+  var spd = (Math.round(position.coords.speed * 100) / 100)* 3.6;
+  document.getElementById("speed").innerHTML  = spd  + '<br>';
+  document.getElementById("lat").innerHTML    = Math.round(position.coords.latitude * 100) / 100                + '<br>';
+  document.getElementById("lng").innerHTML    = Math.round(position.coords.longitude * 100) / 100               + '<br>';
+  document.getElementById("alt").innerHTML    = Math.round(position.coords.altitude * 100) / 100                + '<br>';
+  document.getElementById("acc").innerHTML    = Math.round(position.coords.accuracy * 100) / 100                + '<br>';
+  document.getElementById("altacc").innerHTML = Math.round(position.coords.altitudeAccuracy * 100) / 100        + '<br>';
   setInterval(function () {
     navigator.geolocation.watchPosition(onSuccess);
-  }, 1000);
+  }, 1000)
+  var element = document.getElementById("warning")
+  if (spd >= 100) {  document.getElementById("alert").style.display = "inline";
+} else {
+  document.getElementById("alert").style.display = "none"; 
+}
+};
+function addspeed() {
+  var number = 199;
+  var speed = document.getElementById('speed');
+  var element = document.getElementById("warning")
+  number++;
+  speed.textContent = number.toString();
+  document.getElementById("alert").style.display = "inline";
 }
 
 var JqonSuccess = function() {
   jQuery.post( "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDCa1LUe1vOczX1hO_iGYgyo8p_jYuGOPU", function(position) {
-  document.getElementById("speed").innerHTML  = Math.round(position.coords.speed * 100) / 100            + '<br>';
-  document.getElementById("lat").innerHTML    = Math.round(position.coords.latitude * 100) / 100         + '<br>';
-  document.getElementById("lng").innerHTML    = Math.round(position.coords.longitude * 100) / 100        + '<br>';
-  document.getElementById("alt").innerHTML    = Math.round(position.coords.altitude * 100) / 100         + '<br>';
-  document.getElementById("acc").innerHTML    = Math.round(position.coords.accuracy * 100) / 100         + '<br>';
-  document.getElementById("altacc").innerHTML = Math.round(position.coords.altitudeAccuracy * 100) / 100 + '<br>';
-  document.getElementById("nor").innerHTML    = Math.round(position.coords.heading * 100) / 100          + '<br>';
+    document.getElementById("speed").innerHTML  = (Math.round(position.coords.speed * 100) / 100)* 3.6  + " Km/hr" + '<br>';
+    document.getElementById("lat").innerHTML    = Math.round(position.coords.latitude * 100) / 100                + '<br>';
+    document.getElementById("lng").innerHTML    = Math.round(position.coords.longitude * 100) / 100               + '<br>';
+    document.getElementById("alt").innerHTML    = Math.round(position.coords.altitude * 100) / 100                + '<br>';
+    document.getElementById("acc").innerHTML    = Math.round(position.coords.accuracy * 100) / 100                + '<br>';
+    document.getElementById("altacc").innerHTML = Math.round(position.coords.altitudeAccuracy * 100) / 100        + '<br>';
+    var jqspd = (Math.round(position.coords.speed * 100) / 100)* 3.6;
   setInterval(function () {
     navigator.geolocation.watchPosition(JqonSuccess);
-  }, 1000)
+  }, 1000);
+  if (jqspd > 100) {
+    document.getElementById("alert").style.display = "inline";
+  }
+ if (jqspd > 120) {
+   document.getElementById("alert").style.display = "inline";;
+   element.classList.add("shake-little");
+ }
+ if (jqspd > 130) {
+   document.getElementById("alert").style.display = "inline";;
+   element.classList.add("shake");
+ }
+ if (jqspd > 140) {
+   document.getElementById("alert").style.display = "inline";;
+   element.classList.add("shake-hard");
+ }
+ if (jqspd > 150) {
+   document.getElementById("alert").style.display = "inline";;
+   element.classList.add("shake-crazy");
+ }
+  else {
+    document.getElementById("alert").style.display = "none";
+ };  
 })};
 // onError Callback receives a PositionError object
 //
