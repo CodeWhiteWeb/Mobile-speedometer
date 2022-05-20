@@ -17,10 +17,11 @@ var onSuccess = function (position) {
   document.getElementById("acc").innerHTML    = Math.round(position.coords.accuracy * 100) / 100                + '<br>';
   document.getElementById("altacc").innerHTML = Math.round(position.coords.altitudeAccuracy * 100) / 100        + '<br>';
   setInterval(function () {
-    navigator.geolocation.watchPosition(onSuccess);
+    navigator.geolocation.watchPosition(onSuccess, {enableHighAccuracy:true});
   }, 1000)
-  var element = document.getElementById("warning")
   if (spd >= 100) {  document.getElementById("alert").style.display = "inline";
+  var myAudio = new Audio('alarm.mp3');
+  myAudio.play();
 } else {
   document.getElementById("alert").style.display = "none"; 
 }
@@ -28,10 +29,11 @@ var onSuccess = function (position) {
 function addspeed() {
   var number = 199;
   var speed = document.getElementById('speed');
-  var element = document.getElementById("warning")
+  var myAudio = new Audio('alarm.mp3');
   number++;
   speed.textContent = number.toString();
   document.getElementById("alert").style.display = "inline";
+  myAudio.play();
 }
 
 var JqonSuccess = function() {
@@ -44,30 +46,14 @@ var JqonSuccess = function() {
     document.getElementById("altacc").innerHTML = Math.round(position.coords.altitudeAccuracy * 100) / 100        + '<br>';
     var jqspd = (Math.round(position.coords.speed * 100) / 100)* 3.6;
   setInterval(function () {
-    navigator.geolocation.watchPosition(JqonSuccess);
+    navigator.geolocation.watchPosition(JqonSuccess, {enableHighAccuracy:true});
   }, 1000);
-  if (jqspd > 100) {
-    document.getElementById("alert").style.display = "inline";
-  }
- if (jqspd > 120) {
-   document.getElementById("alert").style.display = "inline";;
-   element.classList.add("shake-little");
- }
- if (jqspd > 130) {
-   document.getElementById("alert").style.display = "inline";;
-   element.classList.add("shake");
- }
- if (jqspd > 140) {
-   document.getElementById("alert").style.display = "inline";;
-   element.classList.add("shake-hard");
- }
- if (jqspd > 150) {
-   document.getElementById("alert").style.display = "inline";;
-   element.classList.add("shake-crazy");
- }
-  else {
-    document.getElementById("alert").style.display = "none";
- };  
+  if (jqspd >= 100) {  document.getElementById("alert").style.display = "inline";
+} else {
+  document.getElementById("alert").style.display = "none"; 
+  var myAudio = new Audio('alarm.mp3');
+  myAudio.play();
+};  
 })};
 // onError Callback receives a PositionError object
 //
@@ -77,7 +63,7 @@ function onError(error) {
     'message: ' + error.message + '<br>';
 }
 
-navigator.geolocation.watchPosition(onSuccess, onError);
+navigator.geolocation.watchPosition(onSuccess, onError,  {enableHighAccuracy:true});
 
 
 
