@@ -1,0 +1,15 @@
+{
+  "name": "ai-project",
+  "version": "1.0.0",
+  "description": "Ai Project Of Sajag Kamthan X C",
+  "main": "main.js",
+  "dependencies": {
+    "electron": "^18.2.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Sajag Kamthan",
+  "license": "ISC"
+}

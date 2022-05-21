@@ -4,36 +4,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="./favicon.ico">
-    <script src="main.js"></script>
+    <link rel="icon" type="image/x-icon" href="./favicon8.ico">
+    <script src="espeed.js"></script>
+    <script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://csshake.surge.sh/csshake.min.css">
-    <title>Speedometer | Sajag Kamthan</title>
+    <title>ESpeed | Sajag Kamthan</title>
 </head>
 <body>
-    <header class="text-gray-400 bg-gray-900 body-font">
-        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-          <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
-            <img src="https://uxwing.com/wp-content/themes/uxwing/download/13-time-date/fast-speed.svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-red-500 rounded-full" viewBox="0 0 24 24">
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-            </svg>
-            <span class="ml-3 text-xl">Speedometer</span>
-          </a>
-          <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-          </nav>
-          <button class="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0">Project 2
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </button>
+    <header class="body-font">
+      <nav class="font-sans flex flex-col text-center text-white content-center sm:flex-row sm:text-left sm:justify-between py-2 px-6 bg-red-500 shadow sm:items-baseline w-full">
+
+        <div class="sm:mb-0 self-center">
+          <div class="h-10 w-10 self-center mr-2 content-center">
+            <img class="h-10 w-10 self-center rounded-full" src="./sqlogo.PNG" />
+          </div>
         </div>
+        <div class="justify-center text-center">
+          <a href="#" class="text-2xl no-underline text-grey-darkest hover:text-blue-dark font-sans font-bold">ESpeed</a><br>
+          <span class="text-xs text-grey-dark">Keeps You Safe</span>
+        </div>
+      
+        <div class="sm:mb-0 self-center">
+          <div class="h-10" style="display: table-cell; vertical-align: middle; ">
+          <a href="#" class="text-md no-underline text-black hover:text-blue-dark ml-2 px-1">Espeed Project</a>
+          <a href="#" class="text-md no-underline text-grey-darker hover:text-blue-dark ml-2 px-1">Link2</a>
+          </div>
+      
+        </div>
+      </nav>      
       </header>
       <div id="alert" class="hidden">
-        <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
+        <div class="bg-red-500 text-white font-bold px-4 py-2">
           <div id="warning" class="shake shake-little shake-constant">Danger</div>
         </div>
-        <div class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
+        <div class="border border-t-0 border-red-400 bg-red-100 px-4 py-3 text-red-700">
           <p>Something not ideal might be happening.</p>
         </div>
       </div>
@@ -52,6 +58,7 @@
                   <h2 class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">Speed<h6>the vehicle's speed calculated using geolocation API</h6></h2>
                   <p class="leading-relaxed text-2xl font-bold"><span class="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500" > Current Speed : <div id="speed"></div>Km/hr<br> <br> Demo Button :</span></p>
                   <button type="button" class="px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onclick="addspeed()">Add Fake Speed</button>
+                  <button type="button" class="px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onclick="rmvspeed()">Remove Fake Speed</button>
                 </div>
               </div>
               <div class="flex relative pb-12">
